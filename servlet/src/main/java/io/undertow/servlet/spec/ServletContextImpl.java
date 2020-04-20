@@ -409,7 +409,11 @@ public class ServletContextImpl implements ServletContext {
         if (file == null) {
             return null;
         }
-        return file.toAbsolutePath().toString();
+        String fileSeparator = "";
+        if(path != null && (path.equals("/") || path.equals("\\"))) {
+            fileSeparator = File.separator;
+        }
+        return file.toAbsolutePath().toString() + fileSeparator;
     }
 
     @Override
